@@ -22,7 +22,19 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    /* declare variables in root to access across the html */
+    /* attaching it to "root" equals to attaching to the "html" element i.e., <html style="padding: 20px; ...." */
+    :root{
+      --spacing: 10px;
+      --blur: 10px;
+      --base: "BADA55";
+    }
 
+    img{
+      padding: var(--spacing);
+      background-color: var(--base);
+      filter: blur(var(--blur));
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -46,6 +58,17 @@
   </style>
 
   <script>
+    function changeControls(){
+      const suffix = this.dataset.sizing || "";
+      // console.dir(document);  // document has documentElement which further has properties to mess with ....
+      document.documentElement.style.setProperty(`--${this.name}`, `${this.value}${suffix}`)
+    }
+
+    const inputs = document.querySelectorAll(".controls input");
+    inputs.forEach(input => {
+      input.addEventListener("change", changeControls);
+      input.addEventListener("mousemove", changeControls)
+    })
   </script>
 
 </body>

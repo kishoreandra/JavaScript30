@@ -66,8 +66,7 @@
 
     const inputs = document.querySelectorAll(".controls input");
     inputs.forEach(input => {
-      input.addEventListener("change", changeControls);
-      input.addEventListener("mousemove", changeControls)
+      input.addEventListener("input", changeControls)
     })
   </script>
 
